@@ -11,8 +11,8 @@ The project was completed during ML course at UCU master's program in Data Scien
 This repo has the following structure:
  1. **dim** - implementation of the Deep InfoMax (DIM) algorithm described in the paper [Learning deep representations by mutual information estimation and maximization](https://arxiv.org/abs/1808.06670)
  2. TODO: Vadym, write here about your paper
- 3. **vectors** - here extracted vectors are stored, so you don't need to train model yourself
- 4. **notebooks** - useful jupyte notebooks for exploring properties of extracted represantations
+ 3. **vectors** - here extracted vectors are stored, so you don't need to train models yourself
+ 4. **notebooks** - useful jupyter notebooks for exploring properties of the extracted represantations
  
  If you want to train **DIM** by yourself you can easily do it by using scripts loacted at `dim/`:
   * for train use ```python train.py --num_epochs 100 --train_batch_size 32 --test_batch_size 16 --lr 0.001 --logdir /where/to/store/logs --chkpdir /where/to/store/weights```  
