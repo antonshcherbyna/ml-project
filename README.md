@@ -17,7 +17,7 @@ This repo has the following structure:
  If you want to train DIM by yourself you can easily do it by using scripts loacted at `dim/`:
   * for train use ```python train.py --num_epochs 100 --train_batch_size 32 --test_batch_size 16 --lr 0.001 --logdir /where/to/store/logs --chkpdir /where/to/store/weights```  
   If you have more than one gpu, add `--multi_gpu`. Also, you can monitor logs via tensorboard.
-  * for vectors extraction use ```python infer.py --chkpdir /path/to/weights/folder --chkpname name_of_the_checkpoint --outdir /where/to/store/vectors --batch_size 32```  
+  * for vectors extraction use ```python infer.py --chkpdir /path/to/weights/folder --chkpname epoch-100.chkp --outdir /where/to/store/vectors --batch_size 32```  
   If you have more than one gpu, add `--multi_gpu`. It's better to use default parameter for ```--outdir```.
   
   If you want to train *VADYM'S ALGO* by yourself you can easily do it by using scripts loacted at `vadyms' algo/`:
