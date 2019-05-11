@@ -22,3 +22,7 @@ This repo has the following structure:
   
   If you want to train **VADYM'S ALGO** by yourself you can easily do it by using scripts loacted at `vadyms' algo/`:
   
+## Future work
+1. We want to add more algorithms in the near future (maybe, during project during our DL course) for comparison
+2. Comparing performance of the propsed methods by manifold visualization or similiarity search are is intuitive and insightful, but it lacks quantative measure. Such comparison is the subject of the obgoing research itself: how to estimate quality of the representaion overall? Or maybe we want our features to satisfy some specific properties, what's in this case? So we want to put more effort into exploring this question. But for a start, we we'll simply add comparison by linear classifier trained on top of the unsupervised features performance.
+3. We explored only 2 recent approaches to the problem want to solve, but we see that they have common problems - don't take into account semantic.
