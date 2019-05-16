@@ -20,7 +20,7 @@ This repo has the following structure:
   * for vectors extraction use ```python infer.py --chkpdir /path/to/weights/folder --chkpname epoch-100.chkp --outdir /where/to/store/vectors --batch_size 32```  
   If you have more than one gpu, add `--multi_gpu`. It's better to use default parameter for ```--outdir```.
   
-  If you want to train **AET** by yourself you can easily do it by using scripts located in the notebook `aet.ipynb`:
+  If you want to train **AET** by yourself you can easily do it by using jupyter notebook located at `aet/`: `aet.ipynb`
   
 ## Future work
 1. We want to add more algorithms in the near future (maybe, during project during our DL course) for comparison
