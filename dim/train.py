@@ -121,9 +121,7 @@ trainer = Trainer(model, optimizer, criterion, mutual_info_loss, clip_norm, writ
 for epoch in range(initial_epoch, args.num_epochs):
 
     # train loop
-    train_mi_loss = 0
-    train_classification_loss = 0
-    train_accuracy = 0
+    train_loss = 0
     with tqdm(ascii=True, leave=False,
               total=len(train_loader), desc='Epoch {}'.format(epoch)) as bar:
 
@@ -132,37 +130,27 @@ for epoch in range(initial_epoch, args.num_epochs):
             images = images.cuda()
             labels = labels.cuda()
 
-            mi_loss, classification_loss, accuracy = trainer.train_step((images, labels))
+            loss = trainer.train_step((images, labels))
 
             num_batches = len(train_loader)
-            train_mi_loss += mi_loss.item() / num_batches
-            train_classification_loss += classification_loss.item() / num_batches
-            train_accuracy += accuracy.item() / num_batches
+            train_loss += loss.item() / num_batches
 
-            bar.postfix = 'train mi loss - {:.5f}, train classification loss - {:.5f}, train acc - {:.5f}, lr - {:.5f}'.format(
-                                                                                                                                mi_loss,
-                                                                                                                                classification_loss,
-                                                                                                                                accuracy,
-                                                                                                                                lr
-                                                                                                                               )
+            bar.postfix = 'train loss - {:.5f}, lr - {:.5f}'.format(
+                                                                    loss,
+                                                                    lr
+                                                                   )
             bar.update()
 
-            trainer.writer.add_scalars('iter_loss/mi', {'train' : mi_loss.item()}, trainer.num_updates)
-            trainer.writer.add_scalars('iter_loss/classification', {'train' : classification_loss.item()}, trainer.num_updates)
-            trainer.writer.add_scalars('iter_score/accuracy', {'train' : accuracy.item()}, trainer.num_updates)
+            trainer.writer.add_scalars('iter_loss/loss', {'train' : loss.item()}, trainer.num_updates)
 
     # log train stats
-    trainer.writer.add_scalars('epoch_loss/mi', {'train' : train_mi_loss}, trainer.num_updates)
-    trainer.writer.add_scalars('epoch_loss/classification', {'train' : train_classification_loss}, trainer.num_updates)
-    trainer.writer.add_scalars('epoch_score/accuracy', {'train' : train_accuracy}, trainer.num_updates)
+    trainer.writer.add_scalars('epoch_loss/loss', {'train' : train_loss}, trainer.num_updates)
 
     # freed memory
     torch.cuda.empty_cache()
 
     # test loop
-    test_mi_loss = 0
-    test_classification_loss = 0
-    test_accuracy = 0
+    test_loss = 0
     with tqdm(ascii=True, leave=False,
               total=len(test_loader), desc='Epoch {}'.format(epoch)) as bar:
 
@@ -171,20 +159,16 @@ for epoch in range(initial_epoch, args.num_epochs):
             images = images.cuda()
             labels = labels.cuda()
 
-            mi_loss, classification_loss, accuracy = trainer.test_step((images, labels))
+            loss = trainer.test_step((images, labels))
 
             num_batches = len(test_loader)
-            test_mi_loss += mi_loss.item() / num_batches
-            test_classification_loss += classification_loss.item() / num_batches
-            test_accuracy += accuracy.item() / num_batches
+            test_loss += loss.item() / num_batches
 
     # log test stats
-    trainer.writer.add_scalars('epoch_loss/mi', {'test' : test_mi_loss}, trainer.num_updates)
-    trainer.writer.add_scalars('epoch_loss/classification', {'test' : test_classification_loss}, trainer.num_updates)
-    trainer.writer.add_scalars('epoch_score/accuracy', {'test' : test_accuracy}, trainer.num_updates)
+    trainer.writer.add_scalars('epoch_loss/loss', {'test' : test_loss}, trainer.num_updates)
 
     # freed memory
     torch.cuda.empty_cache()
 
     # save model
-    save_model(trainer.model, trainer.model_optimizer, epoch, trainer.num_updates, args.chkpdir)
+    save_model(trainer.model, trainer.optimizer, epoch, trainer.num_updates, args.chkpdir)
