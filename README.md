@@ -22,9 +22,9 @@ This repo has the following structure:
   
   If you want to train **AET** by yourself you can easily do it by using jupyter notebook located at `aet/`: `aet.ipynb`
   
-  P.S. Some parts of code were taken from DIM[https://github.com/rdevon/DIM] and from AET[https://github.com/maple-research-lab/AET] respectively
+  P.S. Some parts of code were taken from [DIM](https://github.com/rdevon/DIM) and from [AET](https://github.com/maple-research-lab/AET) respectively.
   
 ## Future work
-1. We want to explore more algorithms in the near future (maybe, during project during our DL course) to compare them. For example, method for feature extraction by (predicting rotations)[https://arxiv.org/abs/1803.07728] or (solving Jigsaw puzzles)[https://arxiv.org/abs/1603.09246] 
+1. We want to explore more algorithms in the near future (maybe, during project during our DL course) to compare them. For example, method for feature extraction by [predicting rotations](https://arxiv.org/abs/1803.07728) or [solving Jigsaw puzzles](https://arxiv.org/abs/1603.09246).
 2. Performance comparison of the propsed methods by manifold visualization or similarity search are both intuitive and insightful, but they don't provide quantative measure. Such comparison is the subject of the ongoing research itself: how to estimate quality of the representaion overall? Or maybe we want our features to satisfy some specific properties, what's in this case? So we want to put more effort into exploring this question. But for a start, we we'll simply add comparison by linear classifier performance trained on top of the unsupervised features.
 3. We see that both approaches that we have explored share similar problem - they don't take into account semantic information. We think that this property is crucial for usefulness of the representations, so we want to do more research in this direction too. 
