@@ -1,4 +1,4 @@
-# ml-project
+# ucu-ml-project
 
 ## Outline
 
