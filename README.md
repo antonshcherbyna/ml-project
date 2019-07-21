@@ -29,12 +29,13 @@ I conducted several experiments with another datasets to check the quality of re
 
 You can find vectors obtained from new encoder and on new data at ```vectors/```.
 
-Here are results for linear classifier on top of the global feature:
-|  Dataset  | Accuracy on features (linear classifier | Accuracy on images (from paper) |
-|:---------:|:---------------------------------------:|---------------------------------|
-| CIFAR-10  |                  62.39%                 |          75.39%                 |
-| CIFAR-100 |                  36.31%                 |          42.27%                 |
-| STL-10    |                  55.26%                 |         68.7%                   |
+Here are results for linear classifier on top of the global feature:  
+
+ | Dataset | Accuracy on top of the features (linear classifier) | Supervised accuracy (from paper) |
+ | :------- | :----------------------------------------: | :-------------------------------: |
+ | CIFAR-10 | 62.39% | 75.39% |
+ | CIFAR-100 | 36.31% | 42.27% |
+ | STL-10 | 55.26% | 68.70% |
  
 ## Future work
 1. We want to explore more algorithms in the near future (maybe, during project during our DL course) to compare them. For example, method for feature extraction by [predicting rotations](https://arxiv.org/abs/1803.07728) or [solving Jigsaw puzzles](https://arxiv.org/abs/1603.09246).
