@@ -16,9 +16,9 @@ class ResNetMI(ResNet):
     def __init__(self, inplanes, planes, mutual_info_loss):
         super(ResNetMI, self).__init__(inplanes, planes)
         self.mutual_info_loss = mutual_info_loss
-        local_units = 512
-        mi_units = 512
-        global_units = 512
+        local_units = 1024
+        mi_units = 1024
+        global_units = 64
         self.local_net = MI1x1ConvNet(local_units, mi_units)
         self.global_net = MIFCNet(global_units, mi_units)
 
