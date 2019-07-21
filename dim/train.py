@@ -22,6 +22,7 @@ from utils import save_model, load_model
 # parse args
 parser = argparse.ArgumentParser()
 
+parser.add_argument('--data', type=str, default='CIFAR10')
 parser.add_argument('--logdir', type=str, default='logs/train_logs/')
 parser.add_argument('--chkpdir', type=str, default='chkp/')
 parser.add_argument('--chkpname', type=str, default=None)
@@ -42,6 +43,15 @@ transform = transforms.Compose(
     [transforms.Resize((224, 224)),
      transforms.ToTensor(),
      transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
+
+if args.data == 'CIFAR10':
+    Dataset = torchvision.datasets.CIFAR10
+elif args.data == 'CIFAR100':
+    Dataset = torchvision.datasets.CIFAR100
+elif args.data == 'STL10':
+    Dataset = torchvision.datasets.STL10
+else:
+    raise Exception('Data should be either \'CIFAR10\', \'CIFAR100\' or \'STL10\'')
 
 train_set = torchvision.datasets.CIFAR10(root='./data', train=True,
                                          download=True, transform=transform)
